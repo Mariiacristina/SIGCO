@@ -12,6 +12,7 @@ type Vecino struct {
 
 type Ficha struct {
   Id_visita int `json:"id_visita, omitempty"`
+  Id_vecino int `json:"id_vecino, omitempty"`
   Descripcion string `json: "descripcion, omitempty"`
   Costo int `json: "costo, omitempty"`
   Nombre_Admin string `json: "nombre_admin, omitempty"`
