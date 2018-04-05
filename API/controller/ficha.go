@@ -1,11 +1,11 @@
 package controller
 
 import(
-//  "SIGCO/API/model"
+  "SIGCO/API/model"
   "net/http"
   "log"
-//  "SIGCO/API/schema"
-//  "encoding/json"
+  "SIGCO/API/schema"
+  "encoding/json"
 )
 
 func GetAllFichas(w http.ResponseWriter, r *http.Request){
@@ -13,7 +13,14 @@ func GetAllFichas(w http.ResponseWriter, r *http.Request){
 }
 //insertar marciano
 func PostFicha(w http.ResponseWriter, r *http.Request){
-  log.Println("PostFICHA")
+  var ficha schema.Ficha
+  _=json.NewDecoder(r.Body).Decode(&ficha)
+  err := model.InsertFicha(ficha)
+  if (err != nil) {
+    w.WriteHeader(http.StatusInternalServerError)
+  }else{
+    w.WriteHeader(http.StatusOK)
+  }
 }
 
 func UpdateFicha(w http.ResponseWriter, r *http.Request){
