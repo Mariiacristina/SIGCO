@@ -13,5 +13,12 @@ func GetAllVecinos(w http.ResponseWriter, r *http.Request){
 }
 //insertar marciano
 func PostVecino(w http.ResponseWriter, r *http.Request){
-  log.Println("PostVecinos")
+  var vecino schema.Vecino
+  _=json.NewDecoder(r.Body).Decode(&vecino)
+  err := model.InsertVecino(vecino)
+  if (err != nil) {
+    w.WriteHeader(http.StatusInternalServerError)
+  }else{
+    w.WriteHeader(http.StatusOK)
+  }
 }
