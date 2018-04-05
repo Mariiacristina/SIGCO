@@ -10,7 +10,7 @@ var(
 )
 func InsertVecino(vecino schema.Vecino)(errmod error){
   db := connection.Connect()
-  _,errmod = db.Exec("INSERT INTO Marciano VALUES (?,?,?,?,?,?,?)", vecino.Rut, vecino.Nombre, vecino.Apellido, vecino.Direccion, vecino.C_Postal, vecino.Ciudad, vecino.Tel)
+  _,errmod = db.Exec("INSERT INTO VECINO VALUES (?,?,?,?,?,?,?)", vecino.Rut, vecino.Nombre, vecino.Apellido, vecino.Direccion, vecino.C_Postal, vecino.Ciudad, vecino.Tel)
     if(errmod != nil) {
       log.Println("error en el modelo")
       log.Println(errmod)
