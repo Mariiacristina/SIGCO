@@ -19,7 +19,7 @@ func main() {
 
 	mux := http.NewServeMux()
 
-	// mux.Handle("/", index)
+	mux.HandleFunc("/", index)
 	mux.HandleFunc("/agregar_vecino", agregar_vecino)
 	mux.HandleFunc("/visita", visita)
 
@@ -36,9 +36,9 @@ func main() {
 	log.Fatal(server.ListenAndServe())
 }
 
-// func index(w http.ResponseWriter, r *http.Request) {
-// 	tpl.ExecuteTemplate(w, "index.html", nil)
-// }
+func index(w http.ResponseWriter, r *http.Request) {
+	tpl.ExecuteTemplate(w, "index.gohtml", nil)
+}
 
 func agregar_vecino(w http.ResponseWriter, r *http.Request) {
 	tpl.ExecuteTemplate(w, "agregar_vecino.gohtml", nil)
