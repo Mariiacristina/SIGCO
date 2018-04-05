@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>VECINO</title>
+	<script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+</script>
+</head>
+<body>
+
+	<h3>Crear Vecino</h3>
+
+	<form method="POST">
+
+		<input type="text" name="NOMBRE" id="NOMBRE" placeholder="NOMBRE VECINO">
+
+		<br><br>
+
+		<input type="text" name="APELLIDO" id="APELLIDO" placeholder="APELLIDO VECINO">
+
+		<br><br>
+
+		<input type="text" name="RUT" id="RUT" placeholder="RUT VECINO">
+
+		<br><br>
+
+		<input type="text" name="" id="DIRECCION" placeholder="DIRECCION">
+
+		<br><br>
+
+		<input type="text" name="" id="C_POSTAL" placeholder="CODIGO POSTAL">
+
+		<br><br>
+
+		<input type="text" name="" id="CIUDAD" placeholder="CIUDAD">
+
+		<br><br>
+
+		<input type="text" name="" id="TEL" placeholder="TELEFONO">
+
+		<br><br>
+
+		<input type="submit" >
+	</form>
+
+<script>
+$('#boton')
+.click(function(e){
+
+RUT = document.getElementById('RUT').value;
+NOMBRE = document.getElementById('NOMBRE').value;
+APELLIDO = document.getElementById('APELLIDO').value;
+DIRECCION = document.getElementById('DIRECCION').value;
+C_POSTAL = document.getElementById('C_POSTAL').value;
+CIUDAD = document.getElementById('CIUDAD').value;
+TEL = document.getElementById('TEL').value;
+
+var vecino = '{"rut": '+RUT+', "nombre": '+NOMBRE+',"apellido": '+APELLIDO+',"direccion": '+DIRECCION+',"c_postal": '+C_POSTAL+',"ciudad": '+CIUDAD+',"tel": '+TEL+'}';
+
+$.ajax({
+	data: vecino,
+	url: 'http://localhost:8000/Vecino',
+	contentType:"application/json; charset: utf-8",
+	crossDomain: true,
+	withCredentials:false,
+	type: 'post',
+	beforeSend: function(){
+			window.alert("Procesando, espere porfavor...");
+	},
+	success: function (response){
+		console.log(response);
+	},
+	error: function(){
+		alert("Hubo algun tipo de error.");
+	}
+	});
+});
+</script>
+
+</html>
+
